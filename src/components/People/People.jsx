@@ -4,9 +4,9 @@ import Table from '../common/Table';
 import Form from '../common/Form';
 
 const data = [
-  { first: 'Mark', last: 'Otto', handle: '@motto', id: '1' },
-  { first: 'Carl', last: 'Reno', handle: '@ceno', id: '2' },
-  { first: 'Steve', last: 'Smith', handle: '@ssteve', id: '3' }
+  { Name: 'Mark', Surname: 'Otto', Nickname: '@motto', ID: '1' },
+  { Name: 'Carl', Surname: 'Reno', Nickname: '@ceno', ID: '2' },
+  { Name: 'Steve', Surname: 'Smith', Nickname: '@ssteve', ID: '3' }
 ]
 
 const columns = Object.keys(data[0]);
@@ -28,6 +28,7 @@ const People = () => {
 
   return (
     <div className="container">
+      <h1>People</h1>
       <Table
         data={people}
         columns={columns}
