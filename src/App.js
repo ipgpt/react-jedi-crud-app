@@ -48,8 +48,7 @@ function App() {
         </nav>
 
         <Switch>
-          
-          <Redirect exact from="/" to="/people"/>
+          <Redirect exact from="/" to="/people" />
           <Route path="/people" component={People} />
           <Route path="/planets" component={Planets} />
           <Route path="/starships" component={Starships} />
