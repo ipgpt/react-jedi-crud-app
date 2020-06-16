@@ -1,48 +1,54 @@
-import React, { useState } from 'react';
-import Table from "./components/common/Table";
-import Form from './components/common/Form'
-
-// import './App.css';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
-
-const data = [
-    {first: 'Mark', last: 'Otto', handle: '@motto', id: '1'},
-    {first: 'Carl', last: 'Reno', handle: '@ceno', id: '2'},
-    {first: 'Steve', last: 'Smith', handle: '@ssteve', id: '3'}
-]
-
-const columns = Object.keys(data[0]);
+import JEDI from './components/JEDI';
+import People from './components/People';
+import Planets from './components/Planets';
+import Starships from './components/Starships';
 
 function App() {
-    const [people, setPeople] = useState(data);
-    console.log(people);
+  return (
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">JEDI</Link>
+            </li>
+            <li>
+              <Link to="/people">People</Link>
+            </li>
+            <li>
+              <Link to="/planets">Planets</Link>
+            </li>
+            <li>
+              <Link to="/starships">Starships</Link>
+            </li>
+          </ul>
+        </nav>
 
-    const handleAppPerson = (personData) => {
-        const data = [...people, personData];
-        setPeople(data)
-    }
-
-    const getInitialPeopleData = () => {
-        return columns.reduce((cols, columnName) => {
-            cols[columnName] = "";
-            return cols;
-        }, {})
-    }
-
-    return (
-        <div className="container">
-            <Table
-                data={people}
-                columns={columns}
-                tableDescriptor="People"
-            />
-            <Form
-                initialData={getInitialPeopleData()}
-                columns={columns}
-                onAddData={handleAppPerson}
-            />
-        </div>
-    );
+        <Switch>
+          <Route path="/people">
+            <People />
+          </Route>
+          <Route path="/planets">
+            <Planets />
+          </Route>
+          <Route path="/starships">
+            <Starships />
+          </Route>
+          <Route path="/">
+            <JEDI />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
 export default App;
