@@ -1,48 +1,61 @@
-import React, { useState } from 'react';
-import Table from "./components/common/Table";
-import Form from './components/common/Form'
-
-// import './App.css';
-import 'bootstrap/dist/css/bootstrap.css';
-
-const data = [
-    {first: 'Mark', last: 'Otto', handle: '@motto', id: '1'},
-    {first: 'Carl', last: 'Reno', handle: '@ceno', id: '2'},
-    {first: 'Steve', last: 'Smith', handle: '@ssteve', id: '3'}
-]
-
-const columns = Object.keys(data[0]);
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Switch,
+  Route,
+  NavLink,
+} from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.css";
+import People from "./components/People";
+import Planets from "./components/Planets";
+import Starships from "./components/Starships";
 
 function App() {
-    const [people, setPeople] = useState(data);
-    console.log(people);
+  return (
+    <Router>
+      <div>
+        <nav className="navbar navbar-expand-lg bg-dark">
+          <NavLink
+            className="navbar-brand m-2 p-2 text-white"
+            activeClassName="bg-primary"
+            to="/"
+            exact
+          >
+            JEDI
+          </NavLink>
+          <NavLink
+            className="m-2 p-2 text-white"
+            activeClassName="bg-primary"
+            to="/people"
+          >
+            People
+          </NavLink>
+          <NavLink
+            className="m-2 p-2 text-white"
+            activeClassName="bg-primary"
+            to="/planets"
+          >
+            Planets
+          </NavLink>
+          <NavLink
+            className="m-2 p-2 text-white"
+            activeClassName="bg-primary"
+            to="/starships"
+          >
+            Starships
+          </NavLink>
+        </nav>
 
-    const handleAppPerson = (personData) => {
-        const data = [...people, personData];
-        setPeople(data)
-    }
-
-    const getInitialPeopleData = () => {
-        return columns.reduce((cols, columnName) => {
-            cols[columnName] = "";
-            return cols;
-        }, {})
-    }
-
-    return (
-        <div className="container">
-            <Table
-                data={people}
-                columns={columns}
-                tableDescriptor="People"
-            />
-            <Form
-                initialData={getInitialPeopleData()}
-                columns={columns}
-                onAddData={handleAppPerson}
-            />
-        </div>
-    );
+        <Switch>
+          <Redirect exact from="/" to="/people" />
+          <Route path="/people" component={People} />
+          <Route path="/planets" component={Planets} />
+          <Route path="/starships" component={Starships} />
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
 export default App;
