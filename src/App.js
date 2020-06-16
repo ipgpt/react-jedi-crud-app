@@ -1,12 +1,12 @@
 import React from "react";
 import {
   BrowserRouter as Router,
+  Redirect,
   Switch,
   Route,
   NavLink,
 } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
-import JEDI from "./components/JEDI";
 import People from "./components/People";
 import Planets from "./components/Planets";
 import Starships from "./components/Starships";
@@ -48,7 +48,8 @@ function App() {
         </nav>
 
         <Switch>
-          <Route exact path="/" component={JEDI} />
+          
+          <Redirect exact from="/" to="/people"/>
           <Route path="/people" component={People} />
           <Route path="/planets" component={Planets} />
           <Route path="/starships" component={Starships} />
