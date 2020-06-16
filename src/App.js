@@ -49,9 +49,9 @@ function App() {
 
         <Switch>
           <Route exact path="/" component={JEDI} />
-          <Route exact path="/people" component={People} />
-          <Route exact path="/planets" component={Planets} />
-          <Route exact path="/starships" component={Starships} />
+          <Route path="/people" component={People} />
+          <Route path="/planets" component={Planets} />
+          <Route path="/starships" component={Starships} />
         </Switch>
       </div>
     </Router>
